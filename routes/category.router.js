@@ -1,16 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const Category = require("../model/category.model");
-
+const categoryHandler = require("../controllers/categoryController");
 router.route("/")
-    .get(async (requestAnimationFrame,res) => {
-        try {
-            const categories = await Category.find({});
-            res.json(categories)
-        }catch(err){
-            res.status(404).json({ message: "could not find categories" })
-        }
-    })
+    .get(categoryHandler);
 
     module.exports = router;
